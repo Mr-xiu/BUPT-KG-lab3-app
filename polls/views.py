@@ -1,8 +1,12 @@
-from django.shortcuts import render
+import json
 
 # Create your views here.
-from django.http import HttpResponse
+from django.http import JsonResponse
 
 
 def index(request):
-    return HttpResponse("Hello, world. You're at the polls index.")
+    print('request', request)
+    with open('database/entity_result.json', 'r', encoding="UTF8") as f:
+        entity_list = json.load(f)
+
+    return JsonResponse(entity_list, safe=False)
